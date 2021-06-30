@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {LogsService} from '../services/logs.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-logs-detail',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogsDetailComponent implements OnInit {
 
-  constructor() { }
+  id: any;
+
+  constructor(
+    private logsService: LogsService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
   }
 
 }

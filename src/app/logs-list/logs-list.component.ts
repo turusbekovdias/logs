@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LogMainServer } from '../models/log-main-server';
 import {LogsService} from '../services/logs.service';
 
 @Component({
@@ -9,12 +8,24 @@ import {LogsService} from '../services/logs.service';
 })
 export class LogsListComponent implements OnInit {
 
-  logs?: LogMainServer[];
+  logs: any;
 
   constructor(private logsService: LogsService) { }
 
   ngOnInit(): void {
-    this.logsService.getLogsList().subscribe(logs => this.logs = logs);
+    this.getAll();
+  }
+
+  getAll() {
+    this.logsService.getAll()
+      .subscribe(
+        data => {
+          this.logs = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
   }
 
 }
