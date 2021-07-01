@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LogsService} from '../services/logs.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-logs-list',
@@ -10,7 +11,8 @@ export class LogsListComponent implements OnInit {
 
   logs: any;
 
-  constructor(private logsService: LogsService) { }
+  constructor(private logsService: LogsService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -26,6 +28,11 @@ export class LogsListComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+
+  doConsole(index: number) {
+    console.log(index);
+    this.router.navigate(['/logs-detail/'+ this.logs[index].id])
   }
 
 }

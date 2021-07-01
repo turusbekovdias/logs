@@ -1,18 +1,50 @@
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Status</th>
-    <th scope="col">Description</th>
-    <th scope="col">Published</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let log of logs; index as i">
-    <th scope="row">{{ i + 1 }}</th>
-    <td>{{ log.status }}</td>
-    <td>{{ log.description }}</td>
-    <td>{{ log.published }}</td>
-  </tr>
-  </tbody>
-</table>
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2">
+        <a class="text-success" >
+          </a>
+      </span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <tr>
+          <th class="text-center">Person Name</th>
+          <th class="text-center">Age</th>
+          <th class="text-center">Company Name</th>
+          <th class="text-center">Country</th>
+          <th class="text-center">Sort</th>
+          <th class="text-center">Edit Detail</th>
+        </tr>
+        <tr (dblclick)="doConsole(id)" *ngFor="let log of logs; let id = index">
+          <td>
+            <span>{{log.status}}</span>
+          </td>
+          <td>
+            <span>{{log.description}}</span>
+          </td>
+          <td>
+            <span>{{log.title}}</span>
+          </td>
+          <td>
+            <span>{{log.published}}</span>
+          </td>
+          <td>
+            <span class="table-up">
+              <a class="indigo-text">
+              </a>
+            </span>
+            <span class="table-down">
+              <a class="indigo-text">
+              </a>
+            </span>
+          </td>
+          <td>
+            <span class="table-remove">
+              <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" >Remove</button>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
